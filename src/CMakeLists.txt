@@ -6,5 +6,6 @@ find_package(tvision CONFIG)
 
 add_executable(demo TFileContent.cpp TInterior.cpp TDemoWindow.cpp main.cpp)
 
+target_include_directories(demo PUBLIC include)
 target_link_libraries(demo tvision::tvision)
 
