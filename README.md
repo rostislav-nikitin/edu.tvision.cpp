@@ -1,7 +1,7 @@
 # edu.tvision.cpp
-Turbo Vision self-education
+Turbo Vision self-education project
 
-## Build & run
+## Build & Run
 
 `git clone https://github.com/rostislav-nikitin/edu.tvision.cpp`
 
