@@ -1,16 +1,16 @@
 #include "TDemoWindow.h"
 
 TDemoWindow::TDemoWindow(const TRect &bounds, TStringView aTitle, short aNumber): TWindow{bounds, aTitle, aNumber}, TWindowInit{&TDemoWindow::initFrame}, 
-		main_cpp{"main.cpp", maxViewWidth}, main_h{"main.h", maxViewWidth}
+		main_cpp{"main.cpp", maxViewWidth}, main_h{"main.h", maxViewWidth}, lInterior{}, rInterior{}
 {
 	TRect eBounds = getExtent();
 	TRect r {eBounds.a.x, eBounds.a.y, eBounds.b.x/2, eBounds.b.y};
-	TInterior *lInterior = makeInterior(&main_h, r, true);
+	lInterior = makeInterior(&main_h, r, true);
 	lInterior->growMode = gfGrowHiY;
 	insert(lInterior);
 
 	r = {eBounds.b.x/2 - 1, eBounds.a.y, eBounds.b.x, eBounds.b.y};
-	TInterior *rInterior = makeInterior(&main_cpp, r, false);
+	rInterior = makeInterior(&main_cpp, r, false);
 	rInterior->growMode = (gfGrowHiX | gfGrowHiY);
 	insert(rInterior);
 };
@@ -43,5 +43,10 @@ TInterior *TDemoWindow::makeInterior(TFileContent *fileContent, TRect &bounds, b
 	return new TInterior {r, hScrollBar, vScrollBar, fileContent};
 	
 
+}
+void TDemoWindow::sizeLimits(TPoint &minP, TPoint &maxP)
+{
+		TWindow::sizeLimits(minP, maxP);
+		minP.x = lInterior->size.x + 9;
 }
 

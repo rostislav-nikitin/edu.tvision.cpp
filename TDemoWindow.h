@@ -24,9 +24,12 @@ class TDemoWindow : public TWindow
 {
 public:
 	TDemoWindow(const TRect &bounds, TStringView aTitle, short aNumber);
+	virtual void sizeLimits(TPoint &minP, TPoint &maxP);
 private:
 	TFileContent main_cpp;
 	TFileContent main_h;
+	TInterior *lInterior;
+	TInterior *rInterior;
 
 	//void makeInterior();
 	TInterior *makeInterior(TFileContent *fileContent, TRect &bounds, bool left);
